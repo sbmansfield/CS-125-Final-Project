@@ -3,6 +3,8 @@ package edu.illinois.cs.cs125.lab12;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -19,7 +21,7 @@ import org.json.JSONObject;
  */
 public final class MainActivity extends AppCompatActivity {
     /** Default logging tag for messages from the main activity. */
-    private static final String TAG = "Lab12:Main";
+    private static final String TAG = "MP7:Main";
 
     /** Request queue for our API requests. */
     private static RequestQueue requestQueue;
@@ -38,7 +40,15 @@ public final class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-        startAPICall();
+        // Attach the handler to our UI button
+        final Button startAPICall = findViewById(R.id.search_restaurant);
+        startAPICall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                Log.d(TAG, "Start API button clicked");
+                startAPICall();
+            }
+        });
     }
 
     /**
@@ -56,7 +66,7 @@ public final class MainActivity extends AppCompatActivity {
         try {
             JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                     Request.Method.GET,
-                    "http://api.openweathermap.org/data/2.5/weather?zip=61820,us&appid="
+                    "https://api.yelp.com/v3/businesses/{id}"
                             + BuildConfig.API_KEY,
                     null,
                     new Response.Listener<JSONObject>() {
