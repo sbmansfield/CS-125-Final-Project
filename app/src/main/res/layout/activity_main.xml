@@ -7,6 +7,13 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="TextView" />
+
     <View
         android:id="@+id/view"
         android:layout_width="match_parent"
@@ -17,7 +24,7 @@
         android:id="@+id/search_restaurant"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Search" />
+        android:text="Search for a Restaurant" />
 
     <SearchView
         android:layout_width="match_parent"

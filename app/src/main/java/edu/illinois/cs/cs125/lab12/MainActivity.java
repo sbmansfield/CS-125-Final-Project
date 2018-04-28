@@ -60,13 +60,13 @@ public final class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Make a call to the weather API.
+     * Make a call to the Yelp API.
      */
     void startAPICall() {
         try {
             JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                     Request.Method.GET,
-                    "https://api.yelp.com/v3/businesses/{id}"
+                    "https://api.yelp.com/v3/businesses/search"
                             + BuildConfig.API_KEY,
                     null,
                     new Response.Listener<JSONObject>() {
@@ -74,6 +74,8 @@ public final class MainActivity extends AppCompatActivity {
                         public void onResponse(final JSONObject response) {
                             try {
                                 Log.d(TAG, response.toString(2));
+
+
                             } catch (JSONException ignored) { }
                         }
                     }, new Response.ErrorListener() {
