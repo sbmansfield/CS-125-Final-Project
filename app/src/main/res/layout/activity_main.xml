@@ -25,7 +25,8 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:text="Click the search button to search for a nearby restaurant in Champaign-Urbana, and use the search bar to narrow down your search results!"
+        android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Title"
         android:visibility="visible" />
 
     <Button
@@ -35,28 +36,11 @@
         android:text="Restaurant 1"
         android:visibility="invisible" />
 
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textMultiLine"
-        android:visibility="invisible" />
-
     <Button
         android:id="@+id/restaurant2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Restaurant 2"
-        android:visibility="invisible" />
-
-    <EditText
-        android:id="@+id/editText2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textMultiLine"
-        android:text="info"
         android:visibility="invisible" />
 
     <Button
@@ -67,12 +51,16 @@
         android:visibility="invisible" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/editText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textMultiLine"
-        android:text="info"
         android:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>
