@@ -118,7 +118,7 @@ public final class MainActivity extends AppCompatActivity {
 
                                 final String phoneNumber = result.get("display_phone").toString();
 
-                                //final String url = result.get("image_url").toString();
+                                final String url = result.get("image_url").toString();
 
                                 //create the first restaurant info button
                                 Button restaurantName = findViewById(R.id.restaurant1);
@@ -138,7 +138,7 @@ public final class MainActivity extends AppCompatActivity {
 
                                         info.setText(displayInfo);
 
-                                        /*ImageView image = findViewById(R.id.imageView);
+                                        ImageView image = findViewById(R.id.imageView);
                                         image.setVisibility(View.VISIBLE);
                                         try {
                                             Bitmap bitmap = BitmapFactory.decodeStream((InputStream)new URL(url).getContent());
@@ -147,7 +147,7 @@ public final class MainActivity extends AppCompatActivity {
                                             e.printStackTrace();
                                         } catch (IOException e) {
                                             e.printStackTrace();
-                                        }*/
+                                        }
 
                                     }
                                 });
