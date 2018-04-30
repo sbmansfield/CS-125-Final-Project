@@ -32,7 +32,8 @@
         android:id="@+id/restaurant1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Restaurant 1" />
+        android:text="Restaurant 1"
+        android:visibility="invisible" />
 
     <EditText
         android:id="@+id/editText"
@@ -46,7 +47,8 @@
         android:id="@+id/restaurant2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Restaurant 2" />
+        android:text="Restaurant 2"
+        android:visibility="invisible" />
 
     <EditText
         android:id="@+id/editText2"
@@ -61,7 +63,8 @@
         android:id="@+id/restaurant3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Restaurant 3" />
+        android:text="Restaurant 3"
+        android:visibility="invisible" />
 
     <EditText
         android:id="@+id/editText3"
