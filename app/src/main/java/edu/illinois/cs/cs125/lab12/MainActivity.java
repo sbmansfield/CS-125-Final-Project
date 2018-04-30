@@ -18,6 +18,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -50,7 +51,7 @@ public final class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         restaurantInfo = findViewById(R.id.textView);
-        restaurantInfo.setText("hello world");
+        restaurantInfo.setText("Click the search button to search for a nearby restaurant in Champaign!");
 
         final SearchView searchView = findViewById(R.id.searchText);
 
@@ -88,8 +89,41 @@ public final class MainActivity extends AppCompatActivity {
                         public void onResponse(final JSONObject response) {
                             try {
                                 Log.d(TAG, response.toString(2));
-                                String result = response.getJSONArray("businesses").getJSONObject(0).get("name").toString();
-                                restaurantInfo.setText(result);
+                                JSONObject result = response.getJSONArray("businesses").getJSONObject(0);
+                                String name = result.get("name").toString();
+
+                                JSONArray categories = result.getJSONArray("categories");
+                                final String foodType = categories.getJSONObject(0).get("title").toString();
+                                final String rating = result.get("rating").toString();
+                                final String price = result.get("price").toString();
+
+                                final JSONArray addressArray = result.getJSONObject("location").getJSONArray("display_address");
+                                final String street = addressArray.get(0).toString();
+                                final String city = addressArray.get(1).toString();
+                                final String address = street + ", " + city;
+
+                                final String phoneNumber = result.get("display_phone").toString();
+
+                                //create the first restaurant info button
+                                Button restaurantName = findViewById(R.id.restaurant1);
+                                restaurantName.setVisibility(View.VISIBLE);
+                                restaurantName.setText(name);
+                                restaurantName.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(final View v) {
+                                        Log.d(TAG, "Start API button clicked");
+                                        TextView info = findViewById(R.id.editText);
+                                        info.setVisibility(View.VISIBLE);
+                                        String displayInfo = "Food Type: " + foodType + "\n"
+                                                + "Rating: " + rating + "\n"
+                                                + "Price: " + price + "\n"
+                                                + "Address: " + address + "\n"
+                                                + "Phone Number: " + phoneNumber + "\n";
+
+                                        info.setText(displayInfo);
+                                    }
+                                });
+
                             } catch (JSONException ignored) { }
                         }
                     }, new Response.ErrorListener() {
@@ -111,4 +145,5 @@ public final class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
 }
