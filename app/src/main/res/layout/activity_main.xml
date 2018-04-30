@@ -32,11 +32,40 @@
         android:id="@+id/restaurant1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Restaurant 1"
-        android:visibility="invisible" />
+        android:text="Restaurant 1" />
 
     <EditText
         android:id="@+id/editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textMultiLine"
+        android:text="info"
+        android:visibility="invisible" />
+
+    <Button
+        android:id="@+id/restaurant2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Restaurant 2" />
+
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textMultiLine"
+        android:text="info"
+        android:visibility="invisible" />
+
+    <Button
+        android:id="@+id/restaurant3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Restaurant 3" />
+
+    <EditText
+        android:id="@+id/editText3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"

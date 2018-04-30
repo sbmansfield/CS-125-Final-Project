@@ -37,6 +37,8 @@ public final class MainActivity extends AppCompatActivity {
     public TextView restaurantInfo;
     public String queryInfo;
 
+    public Restaurant[] restaurants = new Restaurant[3];
+
     /**
      * Run when this activity comes to the foreground.
      *
@@ -66,7 +68,7 @@ public final class MainActivity extends AppCompatActivity {
             }
         });
     }
-
+    
     /**
      * Run when this activity is no longer visible.
      */
@@ -89,36 +91,79 @@ public final class MainActivity extends AppCompatActivity {
                         public void onResponse(final JSONObject response) {
                             try {
                                 Log.d(TAG, response.toString(2));
-                                JSONObject result = response.getJSONArray("businesses").getJSONObject(0);
-                                String name = result.get("name").toString();
+                                JSONObject[] results = new JSONObject[3];
+                                for (int i = 0; i < results.length; i++) {
+                                    results[i] = response.getJSONArray("businesses").getJSONObject(i);
+                                    restaurants[i].setName(results[i].get("name").toString());
+                                    JSONArray categories = results[i].getJSONArray("categories");
+                                    restaurants[i].setFoodType(categories.getJSONObject(0).get("title").toString());
+                                    restaurants[i].setRating(results[i].get("rating").toString());
+                                    restaurants[i].setPrice(results[i].get("price").toString());
 
-                                JSONArray categories = result.getJSONArray("categories");
-                                final String foodType = categories.getJSONObject(0).get("title").toString();
-                                final String rating = result.get("rating").toString();
-                                final String price = result.get("price").toString();
+                                    JSONArray addressArray = results[i].getJSONObject("location").getJSONArray("display_address");
+                                    restaurants[i].setStreet(addressArray.get(0).toString());
+                                    restaurants[i].setCity(addressArray.get(1).toString());
+                                    restaurants[i].setAddress();
+                                    restaurants[i].setPhoneNumber(results[i].get("display_phone").toString());
+                                }
 
-                                final JSONArray addressArray = result.getJSONObject("location").getJSONArray("display_address");
-                                final String street = addressArray.get(0).toString();
-                                final String city = addressArray.get(1).toString();
-                                final String address = street + ", " + city;
 
-                                final String phoneNumber = result.get("display_phone").toString();
 
                                 //create the first restaurant info button
-                                Button restaurantName = findViewById(R.id.restaurant1);
-                                restaurantName.setVisibility(View.VISIBLE);
-                                restaurantName.setText(name);
-                                restaurantName.setOnClickListener(new View.OnClickListener() {
+                                Button restaurant1Name = findViewById(R.id.restaurant1);
+                                restaurant1Name.setVisibility(View.VISIBLE);
+                                restaurant1Name.setText(restaurants[0].name);
+                                restaurant1Name.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(final View v) {
                                         Log.d(TAG, "Start API button clicked");
                                         TextView info = findViewById(R.id.editText);
                                         info.setVisibility(View.VISIBLE);
-                                        String displayInfo = "Food Type: " + foodType + "\n"
-                                                + "Rating: " + rating + "\n"
-                                                + "Price: " + price + "\n"
-                                                + "Address: " + address + "\n"
-                                                + "Phone Number: " + phoneNumber + "\n";
+                                        String displayInfo = "Food Type: " + restaurants[0].foodType + "\n"
+                                                + "Rating: " + restaurants[0].rating + "\n"
+                                                + "Price: " + restaurants[0].price + "\n"
+                                                + "Address: " + restaurants[0].address + "\n"
+                                                + "Phone Number: " + restaurants[0].phoneNumber + "\n";
+
+                                        info.setText(displayInfo);
+                                    }
+                                });
+
+                                //create the first restaurant info button
+                                Button restaurant2Name = findViewById(R.id.restaurant2);
+                                restaurant2Name.setVisibility(View.VISIBLE);
+                                restaurant2Name.setText(restaurants[1].name);
+                                restaurant2Name.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(final View v) {
+                                        Log.d(TAG, "Start API button clicked");
+                                        TextView info = findViewById(R.id.editText2);
+                                        info.setVisibility(View.VISIBLE);
+                                        String displayInfo = "Food Type: " + restaurants[1].foodType + "\n"
+                                                + "Rating: " + restaurants[1].rating + "\n"
+                                                + "Price: " + restaurants[1].price + "\n"
+                                                + "Address: " + restaurants[1].address + "\n"
+                                                + "Phone Number: " + restaurants[1].phoneNumber + "\n";
+
+                                        info.setText(displayInfo);
+                                    }
+                                });
+
+                                //create the first restaurant info button
+                                Button restaurant3Name = findViewById(R.id.restaurant3);
+                                restaurant3Name.setVisibility(View.VISIBLE);
+                                restaurant3Name.setText(restaurants[2].name);
+                                restaurant3Name.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(final View v) {
+                                        Log.d(TAG, "Start API button clicked");
+                                        TextView info = findViewById(R.id.editText);
+                                        info.setVisibility(View.VISIBLE);
+                                        String displayInfo = "Food Type: " + restaurants[2].foodType + "\n"
+                                                + "Rating: " + restaurants[2].rating + "\n"
+                                                + "Price: " + restaurants[2].price + "\n"
+                                                + "Address: " + restaurants[2].address + "\n"
+                                                + "Phone Number: " + restaurants[2].phoneNumber + "\n";
 
                                         info.setText(displayInfo);
                                     }
@@ -146,4 +191,84 @@ public final class MainActivity extends AppCompatActivity {
         }
     }
 
+}
+
+class Restaurant {
+    public String name, foodType, rating, price, street, city, address, phoneNumber;
+    public Restaurant(){}
+    public Restaurant(String setName) {
+        name = setName;
+    }
+
+    public boolean setName(String setName) {
+        if (setName == null) {
+            return false;
+        } else {
+            name = setName;
+            return true;
+        }
+    }
+
+    public boolean setRating(String setRating) {
+        if (setRating == null) {
+            return false;
+        } else {
+            rating = setRating;
+            return true;
+        }
+    }
+
+    public boolean setFoodType(String setFoodType) {
+        if (setFoodType == null) {
+            return false;
+        } else {
+            foodType = setFoodType;
+            return true;
+        }
+    }
+
+    public boolean setPrice(String setPrice) {
+        if (setPrice == null) {
+            return false;
+        } else {
+            price = setPrice;
+            return true;
+        }
+    }
+
+    public boolean setStreet(String setStreet) {
+        if (setStreet == null) {
+            return false;
+        } else {
+            price = setStreet;
+            return true;
+        }
+    }
+
+    public boolean setCity(String setCity) {
+        if (setCity == null) {
+            return false;
+        } else {
+            price = setCity;
+            return true;
+        }
+    }
+
+    public boolean setAddress() {
+        if (street == null || city == null) {
+            return false;
+        } else {
+            address = street + ", " + city;
+            return true;
+        }
+    }
+
+    public boolean setPhoneNumber(String setPhoneNumber) {
+        if (setPhoneNumber == null) {
+            return false;
+        } else {
+            price = setPhoneNumber;
+            return true;
+        }
+    }
 }
