@@ -9,9 +9,17 @@
 
     <Button
         android:id="@+id/search_restaurant"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Search for a Restaurant Nearby" />
+
+    <SearchView
+        android:id="@+id/searchText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </SearchView>
 
     <TextView
         android:id="@+id/textView"
@@ -26,12 +34,13 @@
         android:layout_height="wrap_content"
         android:text="Restaurant 1" />
 
-    <SearchView
-        android:id="@+id/searchText"
+    <EditText
+        android:id="@+id/editText"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    </SearchView>
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textMultiLine"
+        android:visibility="invisible" />
 
     <Button
         android:id="@+id/restaurant2"

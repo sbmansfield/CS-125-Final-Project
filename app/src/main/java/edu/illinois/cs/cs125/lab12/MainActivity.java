@@ -138,17 +138,6 @@ public final class MainActivity extends AppCompatActivity {
 
                                         info.setText(displayInfo);
 
-                                        ImageView image = findViewById(R.id.imageView);
-                                        image.setVisibility(View.VISIBLE);
-                                        try {
-                                            Bitmap bitmap = BitmapFactory.decodeStream((InputStream)new URL(url).getContent());
-                                            image.setImageBitmap(bitmap);
-                                        } catch (MalformedURLException e) {
-                                            e.printStackTrace();
-                                        } catch (IOException e) {
-                                            e.printStackTrace();
-                                        }
-
                                     }
                                 });
 
